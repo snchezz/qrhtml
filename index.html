@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escáner de Códigos de Barras</title>
+    <script src="https://rawgit.com/sitepoint-editors/jsqrcode/master/src/qr_packed.js"></script>
+    <script src="https://rawgit.com/dwa012/html5-qrcode/master/minified/html5-qrcode.min.js"></script>
+</head>
+<body>
+
+<div id="escaner-container"></div>
+<div id="resultado"></div>
+
+<script>
+    const escanerContainer = document.getElementById('escaner-container');
+    const resultadoElemento = document.getElementById('resultado');
+
+    const configuracionEscaner = {
+        fps: 10,
+        qrbox: 250
+    };
+
+    const escaner = new Html5QrcodeScanner(
+        'escaner-container',
+        configuracionEscaner
+    );
+
+    escaner.render(onScanSuccess);
+
+    function onScanSuccess(decodedText, decodedResult) {
+        resultadoElemento.innerHTML = `Código de barras escaneado: ${decodedText}`;
+    }
+</script>
+
+</body>
+</html>
